@@ -1,4 +1,11 @@
 # netw0rk
+
+## Protocol Outline
+Peers   (Raspberry Pi's w/ WiFi and Bluetooth)
+Clients (smartphones via app)
+
+
+## Resources
 https://www.ralfebert.de/ios/tutorials/multipeer-connectivity/
 
 https://www.bluetooth.com/bluetooth-technology/topology-options/le-mesh/mesh-tech
