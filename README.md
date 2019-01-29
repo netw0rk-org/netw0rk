@@ -18,14 +18,15 @@
 5. Peers verify the signature set as follows:
     - If the hash, H, of the sorted PeerID list (P = \[P1, P2,...Pn]) exists in SigSet Table, do nothing.
     - Else: Produce a signature, Ši, for the SigSet. Š = (Ši + all other received signatures on SigSet).
-    - If len(Š) >= n, send SigSet + Š to authenticating client via the mesh network.
+    - Add client_id, current_timestamp, and H to SigSet_Table
+    - If len(Š) >= n, send S + Š to authenticating client via the mesh network.
     - Else:
-        - Directly send SigSet + Š to a peer p ∈ P which can be immediately connected with, and whose SigSet signature ∉ Š. 
-        - If such a peer cannot be found, drop SigSet + Š.
+        - Directly send S + Š to a peer p ∈ P which can be immediately connected with, and whose SigSet signature ∉ Š. 
+        - If such a peer cannot be found, drop S + Š.
           - *Research: How to efficiently 'directly' connect with a peer (socketing?)*
           - *Research: can we rectify the scenario when len(Š) < n and an immediate peer cannot be found*
     
-  #### SigSet Table
+ #### SigSet_Table
   | ClientID        | Timestamp     | SigSet Peer Hash  |
   | --------------- |:-------------:| -----------------:|
   | 1234            | 1548718597    | afh13roidn9       |
@@ -35,9 +36,17 @@
  
 ### Mesh Networking
 - Packets are only forwarded if BT Auth is valid. A valid BT Auth:
-    - has packet_userid == sigset_userid
+    - for s ∈ SigSet, packet_userid == s(sigset_userid)
     - is a SigSet which is itself signed by all signing peers. 
     - has current_timestamp - min_timestamp(SigSet) < n. min_timestamp is the timestamp of the oldest signature ∈ SigSet
+    - for s ∈ SigSet, s(PeerID) ∈ Peer_Table, and s is a valid signature for PeerID
+#### Peer_Table
+  | Peer Public Key | 
+  | --------------- |
+  | xzalskd-0       | 
+  | zxqwfpo-2       | 
+  
+
 
 
 
