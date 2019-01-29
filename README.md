@@ -6,8 +6,8 @@
 - Clients (smartphones via app)
 
 #### Parameters
-T = client authentication time interval (say 24 hours)
-n = the number of peers a client needs to receive authentications from
+- T = client authentication time interval (say 24 hours)
+- n = the number of peers a client needs to receive authentications from
 
 ### Bluetooth Authentication 
 1. Client establishes connection to a peer via BLE
