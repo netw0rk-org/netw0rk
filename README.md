@@ -35,11 +35,19 @@
     - Remove row_i from table if current_timestamp - timestamp_i > n
  
 ### Mesh Networking
+
+#### Forwarding
 - Packets are only forwarded if BT Auth is valid. A valid BT Auth:
     - for s ∈ SigSet, packet_userid == s(sigset_userid)
     - is a SigSet which is itself signed by all signing peers. 
     - has current_timestamp - min_timestamp(SigSet) < n. min_timestamp is the timestamp of the oldest signature ∈ SigSet
     - for s ∈ SigSet, s(PeerID) ∈ Peer_Table, and s is a valid signature for PeerID
+- *Research: can the BT Auth be made smaller? SigSet + Š seems quite big
+
+
+#### Peering
+- 
+    
 #### Peer_Table
   | Peer Public Key | 
   | --------------- |
