@@ -16,12 +16,15 @@
 3. Client collects n such signatures from n peers.
 4. Upon getting S = \[S1,S2,...,Sn] such signatures, the client sends S (SigSet) to the last signing peer. 
 5. Peers verify the signature set as follows:
-    - If the hash of the sorted PeerID list (P = \[P1, P2,...Pn]) exists in SigSet Table, do nothing.
+    - If the hash, H, of the sorted PeerID list (P = \[P1, P2,...Pn]) exists in SigSet Table, do nothing.
     - Else: Produce a signature, Ši, for the SigSet. Š = (Ši + all other received signatures on SigSet).
-    - If len(Š) < n, directly send SigSet + Š to a peer p ∈ P which can be immediately connected with, and whose SigSet signature ∉ Š. If such a peer cannot be found, drop SigSet + Š.
-      - *Research: How to efficiently 'directly' connect with a peer (socketing?)*
-      - *Research: can we rectify the scenario when len(Š) < n and an immediate peer cannot be found*
     - If len(Š) >= n, send SigSet + Š to authenticating client via the mesh network.
+    - Else:
+        - Directly send SigSet + Š to a peer p ∈ P which can be immediately connected with, and whose SigSet signature ∉ Š. 
+        - If such a peer cannot be found, drop SigSet + Š.
+          - *Research: How to efficiently 'directly' connect with a peer (socketing?)*
+          - *Research: can we rectify the scenario when len(Š) < n and an immediate peer cannot be found*
+    
   #### SigSet Table
   | ClientID        | Timestamp     | SigSet Peer Hash  |
   | --------------- |:-------------:| -----------------:|
