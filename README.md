@@ -15,18 +15,20 @@ n = the number of peers a client needs to receive authentications from
 2. Peer produces a signature: Sign(PeerID || ClientID || Date) and transmits it back to the client. 
 3. Client collects n such signatures from peers.
 4. Upon getting S = \[S1,S2,...,Sn] such signatures, the client sends S (SigSet) to the last signing peer. 
-5. The Peer verifies the signature set as follows:
-    - If the hash of the sorted PeerID list (P = \[P1, P2,...Pn]) exists in SigSet table, do nothing.
-    - Else: Produce a signature, $i for the SigSet, 
-    - Directly send SigSet + $i + (all other received $'s) to a peer p ∈ P which can be immediately connected with, and who has not yet signed the SigSet
-      - RESEARCH: How to efficiently 'directly' connect with a peer (socketing?)
-    - If len() >= S, transmit SigSet + $ to authenticating client. cannot find a direct peer ∈ P, drop SigSet.
-    - 
+5. Peers verify the signature set as follows:
+    - If the hash of the sorted PeerID list (P = \[P1, P2,...Pn]) exists in SigSet Table, do nothing.
+    - Else: Produce a signature, Ši, for the SigSet. Š = Ši + all other received SigSet signatures
+    - If len(Š) < S, directly send SigSet + Š to a peer p ∈ P which can be immediately connected with, and whose sig ∉ Š. If such a peer cannot be found, drop SigSet + Š
+          - RESEARCH: How to efficiently 'directly' connect with a peer (socketing?)
+    - Else: Send SigSet + Š to authenticating client. 
   #### SigSet Table
   | ClientID        | Timestamp     | SigSet Peer Hash  |
   | --------------- |:-------------:| -----------------:|
   | 1234            | 1548718597    | afh13roidn9       |
   | 5678            | 1548703652    | grepk1239fnz      |
+  
+  Remove row_i from table if current_timestamp - timestamp_i > n
+
 
 
 
