@@ -1,11 +1,11 @@
 # netw0rk
 
 ## Protocol Outline
-#### Participants
+### Participants
 - Peers   (Raspberry Pi's w/ WiFi and Bluetooth)
 - Clients (smartphones via app)
 
-#### Parameters
+### Parameters
 - T = client authentication time interval (say 24 hours)
 - n = the number of peers a client needs to receive authentications from
 
