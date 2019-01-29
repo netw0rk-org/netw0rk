@@ -32,8 +32,8 @@ n = the number of peers a client needs to receive authentications from
  
  ### Mesh Networking
  - Packets are only forwarded if BT Auth is valid. A valid BT Auth :
-       - is a SigSet which is itself signed by all signing peers. 
-       - has current_timestamp - min_timestamp(SigSet) < n. min_timestamp is the timestamp of the oldest signature 
+           - is a SigSet which is itself signed by all signing peers. 
+           - has current_timestamp - min_timestamp(SigSet) < n. min_timestamp is the timestamp of the oldest signature ∈ SigSet
 
 
 
