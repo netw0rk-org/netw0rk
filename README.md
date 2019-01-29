@@ -42,7 +42,8 @@
     - is a SigSet which is itself signed by all signing peers. 
     - has current_timestamp - min_timestamp(SigSet) < n. min_timestamp is the timestamp of the oldest signature ∈ SigSet
     - for s ∈ SigSet, s(PeerID) ∈ Peer_Table, and s is a valid signature for PeerID
-- *Research: can the BT Auth be made smaller? SigSet + Š seems quite big
+- *Research: can the BT Auth be made smaller? SigSet + Š seems quite big*
+- Use CJDNS for forwarding?
 
 
 #### Peering
