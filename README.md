@@ -18,8 +18,9 @@ n = the number of peers a client needs to receive authentications from
 5. Peers verify the signature set as follows:
     - If the hash of the sorted PeerID list (P = \[P1, P2,...Pn]) exists in SigSet Table, do nothing.
     - Else: Produce a signature, Ši, for the SigSet. Š = Ši + all other received SigSet signatures
-    - If len(Š) < S, directly send SigSet + Š to a peer p ∈ P which can be immediately connected with, and whose sig ∉ Š. If such a peer cannot be found, drop SigSet + Š.
+    - If len(Š) < n, directly send SigSet + Š to a peer p ∈ P which can be immediately connected with, and whose sig ∉ Š. If such a peer cannot be found, drop SigSet + Š.
       - *Research: How to efficiently 'directly' connect with a peer (socketing?)*
+      - *Research: can we rectify the scenario when len(Š) < n and an immediate peer cannot be found
     - Else: Send SigSet + Š to authenticating client. 
   #### SigSet Table
   | ClientID        | Timestamp     | SigSet Peer Hash  |
@@ -27,7 +28,7 @@ n = the number of peers a client needs to receive authentications from
   | 1234            | 1548718597    | afh13roidn9       |
   | 5678            | 1548703652    | grepk1239fnz      |
   
-  Remove row_i from table if current_timestamp - timestamp_i > n
+    - Remove row_i from table if current_timestamp - timestamp_i > n
 
 
 
