@@ -2,8 +2,8 @@
 
 ## Protocol Outline
 #### Participants
-Peers   (Raspberry Pi's w/ WiFi and Bluetooth)
-Clients (smartphones via app)
+- Peers   (Raspberry Pi's w/ WiFi and Bluetooth)
+- Clients (smartphones via app)
 
 #### Parameters
 T = client authentication time interval (say 24 hours)
