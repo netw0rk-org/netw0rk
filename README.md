@@ -30,10 +30,11 @@ n = the number of peers a client needs to receive authentications from
   
     - Remove row_i from table if current_timestamp - timestamp_i > n
  
- ### Mesh Networking
- - Packets are only forwarded if BT Auth is valid. A valid BT Auth :
-           - is a SigSet which is itself signed by all signing peers. 
-           - has current_timestamp - min_timestamp(SigSet) < n. min_timestamp is the timestamp of the oldest signature ∈ SigSet
+### Mesh Networking
+- Packets are only forwarded if BT Auth is valid. A valid BT Auth:
+    - has packet_userid == sigset_userid
+    - is a SigSet which is itself signed by all signing peers. 
+    - has current_timestamp - min_timestamp(SigSet) < n. min_timestamp is the timestamp of the oldest signature ∈ SigSet
 
 
 
