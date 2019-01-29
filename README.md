@@ -11,7 +11,7 @@ n = the number of peers a client needs to receive authentications from
 
 ### Bluetooth Authentication 
 1. Establish Connection via BLE
-    - RESEARCH: range of BLE and whether information can be transmitted without forming a connection (via changing the device name)
+    - *Research: range of BLE and whether information can be transmitted without forming a connection (via changing the device name)*
 2. Peer produces a signature: Sign(PeerID || ClientID || Date) and transmits it back to the client. 
 3. Client collects n such signatures from peers.
 4. Upon getting S = \[S1,S2,...,Sn] such signatures, the client sends S (SigSet) to the last signing peer. 
@@ -19,7 +19,7 @@ n = the number of peers a client needs to receive authentications from
     - If the hash of the sorted PeerID list (P = \[P1, P2,...Pn]) exists in SigSet Table, do nothing.
     - Else: Produce a signature, Ši, for the SigSet. Š = Ši + all other received SigSet signatures
     - If len(Š) < S, directly send SigSet + Š to a peer p ∈ P which can be immediately connected with, and whose sig ∉ Š. If such a peer cannot be found, drop SigSet + Š.
-      - RESEARCH: How to efficiently 'directly' connect with a peer (socketing?)
+      - *Research: How to efficiently 'directly' connect with a peer (socketing?)*
     - Else: Send SigSet + Š to authenticating client. 
   #### SigSet Table
   | ClientID        | Timestamp     | SigSet Peer Hash  |
