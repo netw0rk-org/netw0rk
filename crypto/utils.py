@@ -1,8 +1,8 @@
 from ecdsa import SigningKey
-import time
+import formatting
 
-
-# Not Secure... DER shouldn't be stored in the /crypto directory
+# NOTE: Not Secure... DER shouldn't be stored in the /crypto directory
+#
 def generate_secret():
     sk = SigningKey.generate() # uses NIST192p
     der = sk.to_der()
@@ -16,20 +16,23 @@ def get_signing_key():
     sk = SigningKey.from_der(sk_der)
     return sk
 
-def sign(user_pub_key):
-    timestamp = time.time()
+
+# TODO: Figure out how to derive pub key from the signature
+#
+def signer(data_to_sign_array):
+    to_sign = formatting.binary_string(data_to_sign_array)
     sk = get_signing_key()
+    signature = sk.sign_deterministic(to_sign)
+    return signature
 
-    signature = sk.sign_deterministic(b"{}{}".format(user_pub_key, timestamp))
-    return signature, user_pub_key, timestamp
 
-def verify_sig(sig, content):
+def verify_sig(sig, signed_data_array):
+    to_verify = formatting.binary_string(signed_data_array)
     sk = get_signing_key()
     vk = sk.get_verifying_key()
-    assert vk.verify(sig, content)
-    return True
-
-# generate_secret()
-# sig, user, t = sign("carlos")
-# print(sig, t)
-# verify_sig(sig, b"{}{}".format(user, t))
+    try:
+        vk.verify(sig, to_verify)
+        return True
+    except:
+        print("invalid sig")
+        return False
