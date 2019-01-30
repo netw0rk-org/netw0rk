@@ -1,5 +1,5 @@
 from ecdsa import SigningKey
-import formatting
+import crypto.formatting
 
 # NOTE: Not Secure... DER shouldn't be stored in the /crypto directory
 #
