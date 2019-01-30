@@ -12,7 +12,7 @@
 ### Bluetooth Authentication 
 1. Client establishes connection to a peer via BLE
     - *Research: range of BLE and whether information can be transmitted without forming a connection (via changing the device name)*
-2. Peer produces a signature: Sign(PeerID || ClientID || Date) and transmits it back to the client. 
+2. Peer produces a signature: Sign(PeerID (?) || ClientPubKey || Date) and transmits it back to the client. 
 3. Client collects n such signatures from n peers.
 4. Upon getting S = \[S1,S2,...,Sn] such signatures, the client sends S (SigSet) to the last signing peer. 
 5. Peers verify the signature set as follows:
