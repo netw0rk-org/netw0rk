@@ -1,18 +1,20 @@
 from ecdsa import SigningKey
-import crypto.formatting
+import formatting
+
+KEY_FILE_PATH = "../local/signing_key.der"
 
 # NOTE: Not Secure... DER shouldn't be stored in the /crypto directory
 #
 def generate_secret():
     sk = SigningKey.generate() # uses NIST192p
     der = sk.to_der()
-    output_file = open("signing_key.der", "wb")
+    output_file = open(KEY_FILE_PATH, "wb")
     output_file.write(der)
     output_file.close()
     return 0
 
 def get_signing_key():
-    sk_der = open("signing_key.der","rb").read()
+    sk_der = open(KEY_FILE_PATH,"rb").read()
     sk = SigningKey.from_der(sk_der)
     return sk
 
