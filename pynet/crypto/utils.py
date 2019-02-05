@@ -3,7 +3,6 @@ import formatting
 
 KEY_FILE_PATH = "../local/signing_key.der"
 
-# NOTE: Not Secure... DER shouldn't be stored in the /crypto directory
 #
 def generate_secret():
     sk = SigningKey.generate() # uses NIST192p
