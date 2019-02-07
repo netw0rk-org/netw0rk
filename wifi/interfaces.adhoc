@@ -1,0 +1,13 @@
+# interfaces(5) file used by ifup(8) and ifdown(8)
+
+# Please note that this file is written to be used with dhcpcd
+# For static IP, consult /etc/dhcpcd.conf and 'man dhcpcd.conf'
+
+# Include files from /etc/network/interfaces.d:
+auto wlan0
+iface wlan0 inet static
+     address 192.168.1.1
+     netmask 255.255.255.0
+     wireless-channel 1
+     wireless-essid raspy 
+     wireless-mode ad-hoc
