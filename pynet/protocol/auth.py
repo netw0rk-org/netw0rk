@@ -21,5 +21,5 @@ def sign_sigset(S):
 def sign_user(client_pub_key, timestamp):
     #
     ts = timestamp if timestamp else time.time()
-    to_sign = [client_pub_key, "{}".format(ts)]
+    to_sign = [client_pub_key, f"{ts}"]
     return utils.signer(to_sign), to_sign

@@ -1,6 +1,6 @@
 
-def binary_string(string_array):
-    output = b""
-    for i in string_array:
-        output += b"{}".format(i)
-    return output
+def binary_string(str_array):
+    output = ""
+    for w in str_array:
+        output += w
+    return output.encode()
