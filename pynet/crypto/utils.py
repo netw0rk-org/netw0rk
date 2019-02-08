@@ -49,10 +49,17 @@ def verify_sig(msg, _pub_key, _sig):
 
 
 # Accepts [<Signature types>]
-def group_sign(_sigs):
-    return Signature.aggregate(_sigs).serialize()
+def group_sign(sigs):
+    # sigs = list(map(lambda x: Signature.from_bytes(x), _sigs))
+    return Signature.aggregate(sigs).serialize()
 
 
 def aggregate_pub_keys(_keys):
     keys = list(map(lambda x: PublicKey.from_bytes(x), _keys))
     return PublicKey.aggregate(keys).serialize()
+
+def sig_deseriazlize(_sigs):
+    sigs = []
+    for s in _sigs:
+        sigs.append(Signature.from_bytes(s))
+    return sigs

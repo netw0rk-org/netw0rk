@@ -61,6 +61,22 @@ def t_group_sign_verify():
     agg_key = utils.aggregate_pub_keys(publics)
     assert utils.verify_sig(bmsg, agg_key, group_sig), "aggregate sig verification fails"
 
+    # sigs_s = [PrivateKey.from_bytes(i).sign(bmsg).serialize() for i in privates]
+    # sigs_s_1 = [i.serialize() for i in sigs]
+    # for i in range(len(sigs_s)):
+    #     assert sigs_s[i] == sigs_s_1[i], "mismatch on serialized, item {}".format(i)
+    # sigs_s_deser = [Signature.from_bytes(i) for i in sigs_s]
+    # for i in range(len(sigs)):
+    #     assert sigs_s_deser[i] == sigs[i], "mismatch on deserialized, item {}".format(i)
+
+# msg = b'NSAWatches'
+# privates = [PrivateKey.from_seed(_seed).serialize() for i in range(5)]
+# publics = [PrivateKey.from_bytes(i).get_public_key().serialize() for i in privates]
+# sigs = [PrivateKey.from_bytes(i).sign(msg).serialize() for i in privates]
+# _sigs = [Signature.from_bytes(i) for i in sigs]
+# assert Signature.aggregate(_sigs), "failing on group_sign()"
+
+
 
 t_seed_gen()
 t_private_key_gen()
