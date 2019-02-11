@@ -7,11 +7,10 @@ def sstable_set_check(S):
 
 
 # TODO: Use BLS group signature
-def sign_sigset(_sigs):
-    if sstable_set_check(_sigs):
-        sigs = utils.sig_deseriazlize(_sigs)
+def sign_sigset(sigs):
+    if sstable_set_check(sigs):
+        # sigs = utils.sig_deseriazlize(_sigs)
         sigset = utils.group_sign(sigs)
-
     else:
         raise ValueError("Client trying to repeat SigSet")
 

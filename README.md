@@ -37,7 +37,7 @@
 ### Mesh Networking
 
 #### Forwarding
-- Packets are only forwarded if BT Auth is valid. A valid BT Auth:
+- ~~Packets are only forwarded if BT Auth is valid.~~ A valid BT Auth:
     - for s ∈ SigSet, packet_userid == s(sigset_userid)
     - is a SigSet which is itself signed by all signing peers.
     - has current_timestamp - min_timestamp(SigSet) < n. min_timestamp is the timestamp of the oldest signature ∈ SigSet
