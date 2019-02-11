@@ -37,7 +37,11 @@
 ### Mesh Networking
 
 #### Forwarding
-- ~~Packets are only forwarded if BT Auth is valid.~~ A valid BT Auth:
+- ~~Packets are only forwarded if BT Auth is valid.~~ Inter-peer communication is unrestricted, that is, peers can forward packets between each other with no restrictions.
+- Entry and Exit peers (the peer who first receives a packet from a client, and the peer who forwards the packet to its destination), are the only ones who perform authentication verification. This includes:
+    - BT Auth verification, once per session.
+    - Client Signature verification on every packet
+- A valid BT Auth:
     - for s ∈ SigSet, packet_userid == s(sigset_userid)
     - is a SigSet which is itself signed by all signing peers.
     - has current_timestamp - min_timestamp(SigSet) < n. min_timestamp is the timestamp of the oldest signature ∈ SigSet
