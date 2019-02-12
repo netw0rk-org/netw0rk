@@ -5,7 +5,7 @@ class device:
         self.name = name
         self.addr = addr
         self.rssi = rssi
-        self.valid = valid 
+        self.valid = valid
 
 class ScanDelegate(DefaultDelegate):
     def __init__(self):
@@ -39,18 +39,18 @@ def SignDevice(dev):
     write= "2de200df-7fe6-49e3-a768-5ff79e767fa6"
     print("trying to connect to device: %s"%dev.addr)
     connection = Peripheral(dev.addr,"random")
-    for c in connection.getCharacteristics(): 
-     if c.uuid==read: 
+    for c in connection.getCharacteristics():
+     if c.uuid==read:
       data = c.read()
       print("".join(map(chr,data)))
      elif c.uuid==write:
        sig = "node-1_%s"%dev.rssi
        signature = '%s|%s'%(sig,getTime())
        res=c.write(str.encode(signature),True)
-       if res['rsp'] is not None: 
+       if res['rsp'] is not None:
         print("SUCCESFUL RESPONSE: ",res)
         return
- else: 
+ else:
      print("Device is not connectable")
      return
 def main():
@@ -68,9 +68,9 @@ def main():
      devices.append(net_device.addr)
      scanner.clear()
      d.ClearDev()
-    else: 
+    else:
      print("Device %s already signed upon"%net_device.addr)
      return
    except Exception as e:
-    print("Unable to Connect to Device at address: %s will try again | %s"%(d.dev.addr,d.dev.rssi)) 
+    print("Unable to Connect to Device at address: %s will try again | %s"%(d.dev.addr,d.dev.rssi))
 if __name__ == "__main__": main()

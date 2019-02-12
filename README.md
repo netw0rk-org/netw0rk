@@ -42,11 +42,10 @@
     - BT Auth verification, once per session.
     - Client Signature verification on every packet
 - A valid BT Auth:
-    - for s ∈ SigSet, packet_userid == s(sigset_userid)
-    - is a SigSet which is itself signed by all signing peers.
-    - has current_timestamp - min_timestamp(SigSet) < n. min_timestamp is the timestamp of the oldest signature ∈ SigSet
+    - signs on UserPubKey who is sending the packet
+    - is signed by all P
+    - has current_timestamp - timestamp(SigSet) < T_interval
     - for s ∈ SigSet, s(PeerID) ∈ Peer_Table, and s is a valid signature for PeerID
-- *Research: can the BT Auth be made smaller? SigSet + Š seems quite big*
 - Use CJDNS for forwarding?
 
 

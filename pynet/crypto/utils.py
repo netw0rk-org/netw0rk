@@ -58,8 +58,5 @@ def aggregate_pub_keys(_keys):
     keys = list(map(lambda x: PublicKey.from_bytes(x), _keys))
     return PublicKey.aggregate(keys).serialize()
 
-def sig_deseriazlize(_sigs):
-    sigs = []
-    for s in _sigs:
-        sigs.append(Signature.from_bytes(s))
-    return sigs
+def sigs_deseriazlize(_sigs):
+    return list(map(lambda x: Signature.from_bytes(x), _sigs))
