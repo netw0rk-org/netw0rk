@@ -1,5 +1,6 @@
 """
 Authentication helper functions
+~~~
  - We need message ID's
     1. Signature set formation request from client
     2. Signature set formation from peer
@@ -7,7 +8,8 @@ Authentication helper functions
     4. Signature set from peer to client
 - Need to standardize timestamps (convert to int?) and delimit each phrase in
 the concatenation (of timestamp, pubkeys, etc. )
-- Create a makefile!!! 
+- Create a makefile!!!
+~~~
 @YCRYPTX
 """
 from context import utils, formatting
@@ -26,7 +28,7 @@ def verify_timestamp(S):
     # If len(S) > N then as the earliest signature pick S[len(S) - N]
     return True
 
-def sign_sigset(_sigs, msg, ):
+def sign_sigset(_sigs, msg, pub_keys):
     sigs = utils.sigs_deseriazlize(_sigs)
 
     assert sstable_set_check(sigs), "Client trying to repeat SigSet"

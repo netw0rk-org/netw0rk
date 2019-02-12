@@ -1,3 +1,11 @@
+"""
+Currently the system is being designed to take in utf-8 encoded bytes
+and return utf-8 encoded bytesself.
+~~~
+Is it best to use UTF-8? 
+~~~
+@YCRYPTX
+"""
 import re
 
 def binary_string(str_array):
