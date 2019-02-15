@@ -1,4 +1,6 @@
-/local
-*.pyc
-/*/__pycache__
-.DS_Store
+/local/**
+**/.pyc
+**/__pycache__
+**/.DS_Store
+**/.icloud
+**/*.icloud

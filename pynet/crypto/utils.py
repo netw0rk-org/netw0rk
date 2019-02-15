@@ -1,39 +1,84 @@
-from ecdsa import SigningKey
-import formatting
+"""
+BLS Crypto toolkit.
+All input and output of below functions is in bytes.
+Using BLSPY by Chia Network
+@YCRYPTX
+"""
 
-KEY_FILE_PATH = "../local/signing_key.der"
+import os.path as path
+from blspy import (PrivateKey, PublicKey,
+                   Signature, AggregationInfo,
+                   ExtendedPrivateKey, BLS)
 
-#
-def generate_secret():
-    sk = SigningKey.generate() # uses NIST192p
-    der = sk.to_der()
+KEY_FILE_PATH =  path.abspath(path.join(__file__ ,"../../local/bls_sk"))
+
+def seed_gen():
+    import os
+    return os.urandom(32)
+
+# Creates new BLS-compatible private key from a random seed
+# saves it in serialized form to ../local/bls_sk
+def private_key_gen(seed = None):
+    if seed == None:
+        sk = PrivateKey.from_seed(seed_gen())
+    else:
+        sk = PrivateKey.from_seed(seed)
+    sk_bytes = sk.serialize()
     output_file = open(KEY_FILE_PATH, "wb")
-    output_file.write(der)
+    output_file.write(sk_bytes)
     output_file.close()
-    return 0
+    return sk_bytes
 
-def get_signing_key():
-    sk_der = open(KEY_FILE_PATH,"rb").read()
-    sk = SigningKey.from_der(sk_der)
-    return sk
-
-
-# TODO: Figure out how to derive pub key from the signature
-#
-def signer(data_to_sign_array):
-    to_sign = formatting.binary_string(data_to_sign_array)
-    sk = get_signing_key()
-    signature = sk.sign_deterministic(to_sign)
-    return signature
+def get_pub_key():
+    sk_bytes = open(KEY_FILE_PATH,"rb").read()
+    sk = PrivateKey.from_bytes(sk_bytes)
+    return sk.get_public_key().serialize()
 
 
-def verify_sig(sig, signed_data_array):
-    to_verify = formatting.binary_string(signed_data_array)
-    sk = get_signing_key()
-    vk = sk.get_verifying_key()
+def sign(msg):
+    sk_bytes = open(KEY_FILE_PATH,"rb").read()
+    sk = PrivateKey.from_bytes(sk_bytes)
+    return sk.sign(msg).serialize()
+
+def verify_sig(msg, _pub_key, _sig):
     try:
-        vk.verify(sig, to_verify)
-        return True
-    except:
-        print("invalid sig")
-        return False
+        sig = Signature.from_bytes(_sig)
+    except RuntimeError:
+        raise ValueError("Bad signature")
+    try:
+        pub_key = PublicKey.from_bytes(_pub_key)
+    except RuntimeError:
+        raise ValueError("Bad public key")
+
+    sig.set_aggregation_info(AggregationInfo.from_msg(pub_key, msg))
+    ok = sig.verify()
+    return ok
+
+
+# Accepts [<Signature types>]
+def group_sign(sigs):
+    # sigs = list(map(lambda x: Signature.from_bytes(x), _sigs))
+    return Signature.aggregate(sigs).serialize()
+
+
+def aggregate_pub_keys(_keys):
+    try:
+        keys = list(map(lambda x: PublicKey.from_bytes(x), _keys))
+    except RuntimeError:
+        raise ValueError("Bad public key")
+
+    return PublicKey.aggregate(keys).serialize()
+
+def sigs_deseriazlize(_sigs):
+    try:
+        sigs = list(map(lambda x: Signature.from_bytes(x), _sigs))
+    except RuntimeError:
+        raise ValueError("Bad signature")
+    return sigs
+
+def pub_keys_deseriazlize(_pubs):
+    try:
+        pubs = list(map(lambda x: PublicKey.from_bytes(x), _pubs))
+    except RuntimeError:
+        raise ValueError("Bad public key")
+    return pubs
