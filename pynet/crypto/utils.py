@@ -41,8 +41,15 @@ def sign(msg):
     return sk.sign(msg).serialize()
 
 def verify_sig(msg, _pub_key, _sig):
-    sig = Signature.from_bytes(_sig)
-    pub_key = PublicKey.from_bytes(_pub_key)
+    try:
+        sig = Signature.from_bytes(_sig)
+    except RuntimeError:
+        raise ValueError("Bad signature")
+    try:
+        pub_key = PublicKey.from_bytes(_pub_key)
+    except RuntimeError:
+        raise ValueError("Bad public key")
+
     sig.set_aggregation_info(AggregationInfo.from_msg(pub_key, msg))
     ok = sig.verify()
     return ok
@@ -55,8 +62,23 @@ def group_sign(sigs):
 
 
 def aggregate_pub_keys(_keys):
-    keys = list(map(lambda x: PublicKey.from_bytes(x), _keys))
+    try:
+        keys = list(map(lambda x: PublicKey.from_bytes(x), _keys))
+    except RuntimeError:
+        raise ValueError("Bad public key")
+
     return PublicKey.aggregate(keys).serialize()
 
 def sigs_deseriazlize(_sigs):
-    return list(map(lambda x: Signature.from_bytes(x), _sigs))
+    try:
+        sigs = list(map(lambda x: Signature.from_bytes(x), _sigs))
+    except RuntimeError:
+        raise ValueError("Bad signature")
+    return sigs
+
+def pub_keys_deseriazlize(_pubs):
+    try:
+        pubs = list(map(lambda x: PublicKey.from_bytes(x), _pubs))
+    except RuntimeError:
+        raise ValueError("Bad public key")
+    return pubs

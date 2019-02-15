@@ -2,7 +2,7 @@
 Currently the system is being designed to take in utf-8 encoded bytes
 and return utf-8 encoded bytesself.
 ~~~
-Is it best to use UTF-8? 
+Is it best to use UTF-8?
 ~~~
 @YCRYPTX
 """
@@ -53,3 +53,6 @@ def timestamp(t):
         return t_str.encode()
     else:
         raise ValueError("Failed to read timestamp")
+
+def int_ts(ts):
+    return int(ts)

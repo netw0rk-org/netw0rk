@@ -48,7 +48,12 @@ def t_verify():
     sig = utils.sign(bmsg)
     pubkey = utils.get_pub_key()
     assert utils.verify_sig(bmsg, pubkey, sig), "Signature verification fails"
-
+    try:
+        assert utils.verify_sig(bmsg +b'\x00', pubkey, sig), ""
+        assert False, "signature verification does not fail on bad sig"
+    except Exception as e:
+        True
+        
 def t_group_sign_verify():
     msg = "NSAWatches"
     bmsg = formatting.binary_string([msg])

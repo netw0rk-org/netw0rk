@@ -1,41 +1,92 @@
 """
 Authentication helper functions
-~~~
- - We need message ID's
-    1. Signature set formation request from client
-    2. Signature set formation from peer
-    3. BT Signture to client
-    4. Signature set from peer to client
-- Need to standardize timestamps (convert to int?) and delimit each phrase in
-the concatenation (of timestamp, pubkeys, etc. )
-- Create a makefile!!!
-~~~
 @YCRYPTX
 """
 from context import utils, formatting
+from . import params
+from functools import reduce
 import time
 
-def sstable_set_check(S):
+def _sstable_set_check(S):
     #perform the SigSet check
     return True
 
-def verify_sigs(S):
+def _peer_table_check(S):
+    #
+    return True
+
+def _verify_sigs(sigs, pubkeys, msgs):
     # verify each signature in S to be valid, and from a known peer (in Peer_Table)
+    # and with timestamp less than T_interval
+    _peer_table_check(pubkeys)
+    for i in range(len(sigs)):
+        if not utils.verify_sig(msgs[i], pubkeys[i], sigs[i]):
+            raise ValueError("1 or more peer signatures is flawed")
     return True
 
-def verify_timestamp(S):
-    # Verify that max_timestamp(S) - min_timestamp(S) < T_inter
-    # If len(S) > N then as the earliest signature pick S[len(S) - N]
-    return True
+#validates that all messages are properly formatted [ClientPubKey '\x00' Timestamp]
+#returns the clientpubkey, minimum timestamp
+def _validate_msgs(msgs):
+    if len(msgs[0]) != 2:
+        raise ValueError("1 or more peer signatures is flawed")
+    client_pub_key = msgs[0][0]
+    try:
+        max_timestamp = formatting.int_ts(msgs[0][1])
+        min_timestamp = formatting.int_ts(msgs[0][1])
+    except:
+        raise ValueError("1 or more messages include an invalid timestamp")
+    for m in msgs:
+        if len(m) != 2:
+            raise ValueError("1 or more peer signatures is flawed")
+        if client_pub_key != m[0]:
+            raise ValueError("Signature set includes more than 1 client public key")
+        try:
+            m_ts = formatting.int_ts(m[1])
+        except:
+            raise ValueError("1 or more messages include an invalid timestamp")
+        if m_ts > max_timestamp:
+            max_timestamp = m_ts
+        if m_ts < min_timestamp:
+            min_timestamp = m_ts
+        client_pub_key = m[0]
 
-def sign_sigset(_sigs, msg, pub_keys):
+    if max_timestamp - min_timestamp > params.T_INTERVAL:
+        raise ValueError("Signature set time interval is too long")
+    return client_pub_key, min_timestamp
+
+#returns the pubkey list in bytes sorted by timestamp
+def _sort_pub_keys(timestamps, pubkeys):
+    linker = dict(zip(timestamps, pubkeys))
+    timestamps.sort()
+    return [linker[i] for i in timestamps]
+
+# finds the timestamp in the to_sign  sig set byte object
+def extract_ts(to_sign):
+    r = len(to_sign) % params.PUB_LEN
+    return to_sign[-r:]
+
+# finds the public keys of peers in to_sign sig set byte object
+def extract_peer_keys(to_sign):
+    r = len(to_sign) % params.PUB_LEN
+    return to_sign[params.PUB_LEN:len(to_sign) - r]
+
+# caller function records all other SigSets and if SigSet == n
+# create the BLS group signature and broadcast to the client
+# Max # of signatures is set to params.MAX_SIGS, for now!
+# If len(S) > N then as the earliest signature pick S_sorted_by_date[len(S) - N]
+def sign_sigset(_sigs, _pub_keys, _msgs):
+    if not (len(_sigs) == len(_pub_keys) == len(_msgs) and len(_sigs) < params.MAX_SIGS and len(_sigs) > 0):
+        raise ValueError("Non-compatible size of signature set data")
+    msgs = [[i[:params.PUB_LEN],i[params.PUB_LEN:]] for i in _msgs]
+    client_pub_key, min_timestamp = _validate_msgs(msgs)
     sigs = utils.sigs_deseriazlize(_sigs)
-
-    assert sstable_set_check(sigs), "Client trying to repeat SigSet"
-    assert verify_sigs(sigs), "A signature in the provided set is invalid"
-    assert verify_timestamp(sigs), "Too much time elapsed between the provided signatures"
-    # Concatenate P (ascendingly sorted PeerID list (P = [P1, P2,...Pn])) || ClientPubKey || min_timestamp(S)
-    return utils.group_sign(sigs)
+    pub_keys = utils.pub_keys_deseriazlize(_pub_keys)
+    _sstable_set_check(sigs)
+    _verify_sigs(_sigs, _pub_keys, _msgs)
+    # pub keys sorted by timestamp and concatenated
+    p = reduce(lambda x, y: x + y , _sort_pub_keys([formatting.int_ts(i[1]) for i in msgs], _pub_keys))
+    to_sign = client_pub_key + p + formatting.timestamp(min_timestamp)
+    return utils.sign(to_sign), to_sign
 
 
 
@@ -45,6 +96,6 @@ def sign_sigset(_sigs, msg, pub_keys):
 #       user had already been signed by a peer AND checks if that peer is known (peer_table)
 def sign_user(client_pub_key, timestamp = None):
     ts = timestamp if timestamp else time.time()
-    to_sign = [client_pub_key, str(timestamp)]
-    _to_sign = formatting.binary_string(to_sign)
-    return utils.sign(_to_sign)
+    ts_sanitized = formatting.timestamp(ts)
+    to_sign = client_pub_key + ts_sanitized
+    return utils.sign(to_sign)

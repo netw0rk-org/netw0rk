@@ -20,7 +20,8 @@
     - If the hash, H, of the sorted PeerID list (P = \[P1, P2,...Pn]) exists in SigSet Table, do nothing.
     - Verify each signature in the set (is valid sig, and belongs to a peer, p ∈ peer_table)
     - Verify that max_timestamp(S) - min_timestamp(S) < T_inter
-    - Concatenate P || ClientPubKey || min_timestamp(S), and sign (call it Ši).
+    - Concatenate ClientPubKey || P || min_timestamp(S), and sign (call it Ši).
+      - Separate by null byte, '\x00' for now
     - Add client_pub_key, current_timestamp, and H to SigSet_Table
     - Send Ši and S to all peers in S.
     - After receiving Ši,..., Šn signatures, a peer forms a BLS group signature Š using Ši,..., Šn, and sends Š to client
@@ -79,6 +80,6 @@ https://developer.apple.com/documentation/networkextension/nehotspothelper
 
 https://crypto.stanford.edu/~dabo/pubs/papers/BLSmultisig.html
 
-https://github.com/asonnino/bls
-
 https://github.com/warner/python-ecdsa
+
+https://github.com/Chia-Network/bls-signatures
