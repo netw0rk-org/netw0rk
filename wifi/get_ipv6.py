@@ -1,5 +1,5 @@
 import os
-f = open('~/cjdns/cjdroute.conf')
+f = open('/home/pi/cjdns/cjdroute.conf')
 address_line = ''
 for l in f:
  if '"ipv6"' in l:
