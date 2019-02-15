@@ -9,5 +9,5 @@ iface wlan0 inet static
      address 192.168.1.1
      netmask 255.255.255.0
      wireless-channel 1
-     wireless-essid raspy 
+     wireless-essid netw0rk 
      wireless-mode ad-hoc
