@@ -21,7 +21,7 @@
     - Verify each signature in the set (is valid sig, and belongs to a peer, p ∈ peer_table)
     - Verify that max_timestamp(S) - min_timestamp(S) < T_inter
     - Concatenate ClientPubKey || P || min_timestamp(S), and sign (call it Ši).
-      - Separate by null byte, '\x00' for now
+      - ~~Separate by null byte, '\x00' for now~~
     - Add client_pub_key, current_timestamp, and H to SigSet_Table
     - Send Ši and S to all peers in S.
     - After receiving Ši,..., Šn signatures, a peer forms a BLS group signature Š using Ši,..., Šn, and sends Š to client
