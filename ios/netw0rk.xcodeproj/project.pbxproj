@@ -7,32 +7,54 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		07091C28223AFC83001B793C /* PeerMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07091C27223AFC83001B793C /* PeerMessage.swift */; };
+		07091C2A223AFC8F001B793C /* MeMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07091C29223AFC8F001B793C /* MeMessage.swift */; };
+		070E40EA22399AE900A66993 /* ToDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070E40E922399AE900A66993 /* ToDo.swift */; };
+		070E40ED22399DE900A66993 /* AdHocViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070E40EC22399DE900A66993 /* AdHocViewController.swift */; };
 		07155C942203A56E0066958A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07155C932203A56E0066958A /* AppDelegate.swift */; };
-		07155C962203A56E0066958A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07155C952203A56E0066958A /* ViewController.swift */; };
+		07155C962203A56E0066958A /* bleSignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07155C952203A56E0066958A /* bleSignatureViewController.swift */; };
 		07155C992203A56E0066958A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07155C972203A56E0066958A /* Main.storyboard */; };
 		07155C9B2203A56F0066958A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07155C9A2203A56F0066958A /* Assets.xcassets */; };
 		07155C9E2203A56F0066958A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07155C9C2203A56F0066958A /* LaunchScreen.storyboard */; };
 		07155CA62204B2A50066958A /* data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07155CA52204B2A50066958A /* data.swift */; };
+		07176FE2223FDCE2003A0E8C /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07176FE1223FDCE2003A0E8C /* Message.swift */; };
 		072DEB2E22053A1800A92114 /* SignatureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072DEB2D22053A1800A92114 /* SignatureTableViewCell.swift */; };
 		072DEB56220665A600A92114 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072DEB55220665A600A92114 /* Device.swift */; };
 		072DEB5822066EDC00A92114 /* userData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072DEB5722066EDC00A92114 /* userData.swift */; };
 		072DEB5A220671B600A92114 /* PeripheralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072DEB59220671B600A92114 /* PeripheralManager.swift */; };
+		073E035C223AD5BD008601A4 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E035B223AD5BD008601A4 /* ChatViewController.swift */; };
+		073E035E223AD5D2008601A4 /* PeerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E035D223AD5D2008601A4 /* PeerCell.swift */; };
+		073E0360223AD5DC008601A4 /* MeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E035F223AD5DC008601A4 /* MeCell.swift */; };
+		07821C57223316530019B0D3 /* MeshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07821C56223316530019B0D3 /* MeshViewController.swift */; };
+		07821C60223802450019B0D3 /* MeshManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07821C5F223802450019B0D3 /* MeshManager.swift */; };
+		07821C642238355D0019B0D3 /* DeviceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07821C632238355D0019B0D3 /* DeviceTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		07091C27223AFC83001B793C /* PeerMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerMessage.swift; sourceTree = "<group>"; };
+		07091C29223AFC8F001B793C /* MeMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeMessage.swift; sourceTree = "<group>"; };
+		070E40E922399AE900A66993 /* ToDo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDo.swift; sourceTree = "<group>"; };
+		070E40EC22399DE900A66993 /* AdHocViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdHocViewController.swift; sourceTree = "<group>"; };
 		07155C902203A56E0066958A /* netw0rk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = netw0rk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07155C932203A56E0066958A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		07155C952203A56E0066958A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		07155C952203A56E0066958A /* bleSignatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bleSignatureViewController.swift; sourceTree = "<group>"; };
 		07155C982203A56E0066958A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		07155C9A2203A56F0066958A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		07155C9D2203A56F0066958A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		07155C9F2203A56F0066958A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07155CA52204B2A50066958A /* data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = data.swift; sourceTree = "<group>"; };
+		07176FE1223FDCE2003A0E8C /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		072DEB2D22053A1800A92114 /* SignatureTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureTableViewCell.swift; sourceTree = "<group>"; };
 		072DEB55220665A600A92114 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		072DEB5722066EDC00A92114 /* userData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userData.swift; sourceTree = "<group>"; };
 		072DEB59220671B600A92114 /* PeripheralManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralManager.swift; sourceTree = "<group>"; };
 		072DEB5B220690D700A92114 /* netw0rk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = netw0rk.entitlements; sourceTree = "<group>"; };
+		073E035B223AD5BD008601A4 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		073E035D223AD5D2008601A4 /* PeerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerCell.swift; sourceTree = "<group>"; };
+		073E035F223AD5DC008601A4 /* MeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeCell.swift; sourceTree = "<group>"; };
+		07821C56223316530019B0D3 /* MeshViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshViewController.swift; sourceTree = "<group>"; };
+		07821C5F223802450019B0D3 /* MeshManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshManager.swift; sourceTree = "<group>"; };
+		07821C632238355D0019B0D3 /* DeviceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,11 +68,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		070E40EB22399DD000A66993 /* ADHOC */ = {
+			isa = PBXGroup;
+			children = (
+				070E40EC22399DE900A66993 /* AdHocViewController.swift */,
+			);
+			path = ADHOC;
+			sourceTree = "<group>";
+		};
+		070E40EE2239B28A00A66993 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		07155C872203A56E0066958A = {
 			isa = PBXGroup;
 			children = (
 				07155C922203A56E0066958A /* netw0rk */,
 				07155C912203A56E0066958A /* Products */,
+				070E40EE2239B28A00A66993 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -65,20 +103,63 @@
 		07155C922203A56E0066958A /* netw0rk */ = {
 			isa = PBXGroup;
 			children = (
+				073E035A223AD5AB008601A4 /* ChatView */,
 				072DEB5B220690D700A92114 /* netw0rk.entitlements */,
-				072DEB55220665A600A92114 /* Device.swift */,
-				072DEB5722066EDC00A92114 /* userData.swift */,
-				072DEB2D22053A1800A92114 /* SignatureTableViewCell.swift */,
-				07155C932203A56E0066958A /* AppDelegate.swift */,
-				07155C952203A56E0066958A /* ViewController.swift */,
-				072DEB59220671B600A92114 /* PeripheralManager.swift */,
+				070E40EB22399DD000A66993 /* ADHOC */,
+				07821C622238350E0019B0D3 /* BLE */,
+				07821C5A22369FEC0019B0D3 /* MeshNetworking */,
 				07155C972203A56E0066958A /* Main.storyboard */,
 				07155C9A2203A56F0066958A /* Assets.xcassets */,
 				07155C9C2203A56F0066958A /* LaunchScreen.storyboard */,
 				07155C9F2203A56F0066958A /* Info.plist */,
-				07155CA52204B2A50066958A /* data.swift */,
+				070E40E922399AE900A66993 /* ToDo.swift */,
 			);
 			path = netw0rk;
+			sourceTree = "<group>";
+		};
+		07176FE3223FDEDF003A0E8C /* MessageProtocol */ = {
+			isa = PBXGroup;
+			children = (
+				07091C29223AFC8F001B793C /* MeMessage.swift */,
+				07091C27223AFC83001B793C /* PeerMessage.swift */,
+				07176FE1223FDCE2003A0E8C /* Message.swift */,
+			);
+			path = MessageProtocol;
+			sourceTree = "<group>";
+		};
+		073E035A223AD5AB008601A4 /* ChatView */ = {
+			isa = PBXGroup;
+			children = (
+				07176FE3223FDEDF003A0E8C /* MessageProtocol */,
+				073E035B223AD5BD008601A4 /* ChatViewController.swift */,
+				073E035D223AD5D2008601A4 /* PeerCell.swift */,
+				073E035F223AD5DC008601A4 /* MeCell.swift */,
+			);
+			path = ChatView;
+			sourceTree = "<group>";
+		};
+		07821C5A22369FEC0019B0D3 /* MeshNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				07821C56223316530019B0D3 /* MeshViewController.swift */,
+				07821C5F223802450019B0D3 /* MeshManager.swift */,
+				07821C632238355D0019B0D3 /* DeviceTableViewCell.swift */,
+			);
+			path = MeshNetworking;
+			sourceTree = "<group>";
+		};
+		07821C622238350E0019B0D3 /* BLE */ = {
+			isa = PBXGroup;
+			children = (
+				072DEB55220665A600A92114 /* Device.swift */,
+				072DEB5722066EDC00A92114 /* userData.swift */,
+				072DEB2D22053A1800A92114 /* SignatureTableViewCell.swift */,
+				07155C932203A56E0066958A /* AppDelegate.swift */,
+				072DEB59220671B600A92114 /* PeripheralManager.swift */,
+				07155C952203A56E0066958A /* bleSignatureViewController.swift */,
+				07155CA52204B2A50066958A /* data.swift */,
+			);
+			path = BLE;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -119,6 +200,15 @@
 							};
 							com.apple.BackgroundModes = {
 								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 0;
+							};
+							com.apple.Maps.iOS = {
+								enabled = 0;
+							};
+							com.apple.WAC = {
+								enabled = 0;
 							};
 						};
 					};
@@ -161,12 +251,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				072DEB2E22053A1800A92114 /* SignatureTableViewCell.swift in Sources */,
-				07155C962203A56E0066958A /* ViewController.swift in Sources */,
+				07155C962203A56E0066958A /* bleSignatureViewController.swift in Sources */,
+				070E40ED22399DE900A66993 /* AdHocViewController.swift in Sources */,
+				07176FE2223FDCE2003A0E8C /* Message.swift in Sources */,
+				073E0360223AD5DC008601A4 /* MeCell.swift in Sources */,
+				07821C57223316530019B0D3 /* MeshViewController.swift in Sources */,
+				07091C2A223AFC8F001B793C /* MeMessage.swift in Sources */,
+				070E40EA22399AE900A66993 /* ToDo.swift in Sources */,
 				072DEB5822066EDC00A92114 /* userData.swift in Sources */,
+				07821C60223802450019B0D3 /* MeshManager.swift in Sources */,
+				07821C642238355D0019B0D3 /* DeviceTableViewCell.swift in Sources */,
 				07155CA62204B2A50066958A /* data.swift in Sources */,
+				073E035C223AD5BD008601A4 /* ChatViewController.swift in Sources */,
 				07155C942203A56E0066958A /* AppDelegate.swift in Sources */,
 				072DEB5A220671B600A92114 /* PeripheralManager.swift in Sources */,
+				07091C28223AFC83001B793C /* PeerMessage.swift in Sources */,
 				072DEB56220665A600A92114 /* Device.swift in Sources */,
+				073E035E223AD5D2008601A4 /* PeerCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,7 +405,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				VALIDATE_PRODUCT = YES;
+				VALIDATE_PRODUCT = NO;
 			};
 			name = Release;
 		};
@@ -312,15 +413,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WMQV92R36D;
+				DEVELOPMENT_TEAM = UZF8K69MUQ;
 				INFOPLIST_FILE = netw0rk/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.carlossantos.netw0rk;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lossantos.netw0rk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -330,15 +433,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WMQV92R36D;
+				DEVELOPMENT_TEAM = UZF8K69MUQ;
 				INFOPLIST_FILE = netw0rk/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.carlossantos.netw0rk;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lossantos.netw0rk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

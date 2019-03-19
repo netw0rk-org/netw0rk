@@ -9,6 +9,7 @@
 import UIKit
 import CoreBluetooth
 import NotificationCenter
+
 class ViewController: UIViewController,UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -38,8 +39,11 @@ class ViewController: UIViewController,UITextFieldDelegate,UITableViewDataSource
     @IBOutlet weak var securityFactorLabel: UILabel!
     //Reset
     @IBOutlet weak var resetButton: UIButton!
+    @IBOutlet weak var resetTable: UIButton!
     
     @IBOutlet weak var place_holder_pk: UILabel!
+    
+    //@IBOutlet weak var bleStatus: UILabel!
     
     var peripheralManager: PeripheralManager!
     var user: UserData!
@@ -60,11 +64,14 @@ class ViewController: UIViewController,UITextFieldDelegate,UITableViewDataSource
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         user = UserData("","THIS IS MY PRIVATE KEY MOFO")
+        
         nameInputBox.delegate = self
         securityFactorInput.delegate = self
         peripheralManager =  PeripheralManager(user)
         peripheralSwitch.setOn(false, animated: false)
+        //bleStatus.text = String(peripheralManager.manager.isAdvertising)
         NotificationCenter.default.addObserver(self, selector: #selector(viewWasLoaded), name: NSNotification.Name("viewLoaded"), object: nil)
+        //NotificationCenter.default.addObserver(self, selector: #selector(updateStatus), name: NSNotification.Name("updatestatus"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -100,12 +107,16 @@ class ViewController: UIViewController,UITextFieldDelegate,UITableViewDataSource
     }
     //Reset Everything
     @IBAction func reset(_ sender: UIButton){
-        deviceNameLabel.text = "__name__"
-        securityFactorLabel.text = "Security Factor"
-        nameInputBox.text = ""
-        securityFactorInput.text = ""
+            deviceNameLabel.text = "__name__"
+            securityFactorLabel.text = "Security Factor"
+            nameInputBox.text = ""
+            securityFactorInput.text = ""
     }
     
+    @IBAction func resetTable(_ sender: Any) {
+        self.peripheralManager.sigs.removeAll()
+        self.table.reloadData()
+    }
     //function that handles notification
     @objc private func viewWasLoaded() {
         self.table.reloadData()
